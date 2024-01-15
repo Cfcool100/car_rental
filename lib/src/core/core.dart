@@ -1,0 +1,11 @@
+export 'package:car_rental/gen/colors.gen.dart';
+export 'package:car_rental/gen/assets.gen.dart';
+export 'package:gap/gap.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:car_rental/src/feature/home/presentation/home.dart';
+export 'package:car_rental/src/feature/onBording/presentation/onboarding.dart';
+export 'package:car_rental/src/core/constant.dart';
+export 'package:go_router/go_router.dart';
+export 'package:car_rental/src/utils/widget/appbar.dart';
+export 'package:car_rental/src/utils/widget/bottom_nav_bar.dart';
