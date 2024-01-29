@@ -9,3 +9,7 @@ export 'package:car_rental/src/core/constant.dart';
 export 'package:go_router/go_router.dart';
 export 'package:car_rental/src/utils/widget/appbar.dart';
 export 'package:car_rental/src/utils/widget/bottom_nav_bar.dart';
+export 'package:car_rental/src/core/shared_widget/section_title.dart';
+export 'package:icons_plus/icons_plus.dart';
+export 'package:car_rental/src/core/shared_widget/search_bar.dart';
+export 'package:car_rental/src/core/shared_widget/rounded_btn.dart';

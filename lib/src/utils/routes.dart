@@ -1,4 +1,5 @@
 import 'package:car_rental/src/core/core.dart';
+import 'package:car_rental/src/feature/details/presentation/page/detail.dart';
 import 'package:flutter/material.dart';
 
 final GoRouter router = GoRouter(
@@ -12,7 +13,13 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: PageRoutes.home,
           builder: (BuildContext context, GoRouterState state) {
-            return const Home();
+            return Home();
+          },
+        ),
+        GoRoute(
+          path: PageRoutes.detailPage,
+          builder: (BuildContext context, GoRouterState state) {
+            return const DetailPage();
           },
         ),
       ],
