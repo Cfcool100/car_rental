@@ -15,10 +15,30 @@ class $AssetsImagesGen {
   /// File path: assets/images/lambo.png
   AssetGenImage get lambo => const AssetGenImage('assets/images/lambo.png');
 
+  $AssetsImagesProductsGen get products => const $AssetsImagesProductsGen();
   $AssetsImagesProfileGen get profile => const $AssetsImagesProfileGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [lambo];
+}
+
+class $AssetsImagesProductsGen {
+  const $AssetsImagesProductsGen();
+
+  /// File path: assets/images/products/Bmw_4_serisi.png
+  AssetGenImage get bmw4Serisi =>
+      const AssetGenImage('assets/images/products/Bmw_4_serisi.png');
+
+  /// File path: assets/images/products/Bmw_x1.png
+  AssetGenImage get bmwX1 =>
+      const AssetGenImage('assets/images/products/Bmw_x1.png');
+
+  /// File path: assets/images/products/tesla.png
+  AssetGenImage get tesla =>
+      const AssetGenImage('assets/images/products/tesla.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bmw4Serisi, bmwX1, tesla];
 }
 
 class $AssetsImagesProfileGen {

@@ -13,7 +13,7 @@ class OnBoarding extends StatelessWidget {
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Gap(0),
             Container(
@@ -30,10 +30,8 @@ class OnBoarding extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 20.w,
-                // top: 35.h,
-                right: 20.w,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,12 +68,8 @@ class OnBoarding extends StatelessWidget {
                 color: AppColor.white,
               ),
               child: MaterialButton(
-                // color: AppColor.white,
-                // height: 45.h,
-                // minWidth: 330.w,
-                // shape: RoundedRectangleBorder(
                 onPressed: () {
-                  context.go('/${PageRoutes.home}');
+                  context.push('/${PageRoutes.home}');
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

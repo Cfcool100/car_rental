@@ -1,11 +1,11 @@
 class ProductsModel {
-  final String img;
-  final String productName;
-  final String productPrice;
+  final String? img;
+  final String? productName;
+  final String? productPrice;
 
   ProductsModel({
-    required this.img,
-    required this.productName,
-    required this.productPrice,
+    this.img,
+    this.productName,
+    this.productPrice,
   });
 }

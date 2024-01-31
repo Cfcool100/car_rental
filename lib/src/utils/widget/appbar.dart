@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 
 AppBar appBar() {
   return AppBar(
-    backgroundColor: const Color(0XFFF3F3F3),
+    backgroundColor: Colors.grey.shade200,
+    leadingWidth: 65.w,
     leading: RotatedBox(
       quarterTurns: 9,
       child: Container(
         padding: EdgeInsets.all(4.dm),
-        margin: EdgeInsets.only(left: 5.w, top: 0.h, bottom: 0.h),
+        margin: EdgeInsets.only(left: 5.w, top: 0.h, bottom:  15.h),
         decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.circular(10.r),

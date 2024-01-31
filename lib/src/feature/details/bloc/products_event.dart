@@ -1,12 +1,9 @@
 part of 'products_bloc.dart';
 
-sealed class ProductsEvent extends Equatable {}
+sealed class ProductsEvent {}
 
 class ProductClickedEvent extends ProductsEvent {
   final ProductsModel selectedItem;
 
   ProductClickedEvent({required this.selectedItem});
-
-  @override
-  List<Object?> get props => [selectedItem];
 }

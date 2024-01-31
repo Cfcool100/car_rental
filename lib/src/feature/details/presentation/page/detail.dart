@@ -1,129 +1,289 @@
 import 'package:car_rental/src/core/core.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:car_rental/src/feature/details/bloc/products_bloc.dart';
+import 'package:car_rental/src/feature/details/presentation/component/characteristic.dart';
+import 'package:car_rental/src/feature/details/presentation/component/renter_list_tile.dart';
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
 
   @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  int currentIndex = 0;
+
+  late PageController controller;
+
+  @override
+  void initState() {
+    controller = PageController(
+      initialPage: currentIndex,
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.alabaster,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(45.h),
-        child: AppBar(
-          leadingWidth: 60.w,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10.w),
-            decoration: BoxDecoration(
-              color: AppColor.white,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: Icon(
-              EvaIcons.arrow_ios_back_outline,
-              size: 25.w,
+    return BlocBuilder<ProductsBloc, ProductsState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColor.alabaster,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60.h),
+            child: AppBar(
+              backgroundColor: AppColor.santasGray.withOpacity(.15),
+              leadingWidth: 60.w,
+              leading: Container(
+                margin: EdgeInsets.only(left: 10.w),
+                decoration: BoxDecoration(
+                  color: AppColor.white,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Icon(
+                  EvaIcons.arrow_ios_back_outline,
+                  size: 25.w,
+                ),
+              ),
+              actions: [
+                Container(
+                  height: 50.h,
+                  width: 50.w,
+                  margin: EdgeInsets.only(right: 10.w),
+                  decoration: BoxDecoration(
+                    color: AppColor.white,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Icon(
+                    Remix.share_line,
+                    size: 25.w,
+                  ),
+                )
+              ],
             ),
           ),
-          actions: [
-            Container(
-              height: 50.h,
-              width: 50.w,
-              margin: EdgeInsets.only(right: 10.w),
-              decoration: BoxDecoration(
-                color: AppColor.white,
-                borderRadius: BorderRadius.circular(10.r),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: .42.sh - 45.h,
+                    decoration: BoxDecoration(
+                      color: AppColor.santasGray.withOpacity(.15),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30.r),
+                          bottomRight: Radius.circular(30.r)),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: PageView(
+                            controller: controller,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 10.h),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(MyImage
+                                        .images.products.bmw4Serisi.path),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 10.h),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(MyImage
+                                        .images.products.bmw4Serisi.path),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 10.h),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(MyImage
+                                        .images.products.bmw4Serisi.path),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SmoothPageIndicator(
+                          controller: controller,
+                          effect: WormEffect(
+                              dotWidth: 8.r,
+                              dotHeight: 8.r,
+                              activeDotColor: AppColor.charade),
+                          count: 3,
+                        ),
+                        Gap(18.h),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    // top: 5.h,
+                    left: 20.w,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Maruti Alto',
+                          style: GoogleFonts.poppins(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star_rate_rounded,
+                              color: Colors.orange.shade300,
+                            ),
+                            Text('4.9',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600)),
+                            Gap(10.w),
+                            Text('(110 Reviews)',
+                                style: GoogleFonts.poppins(
+                                    color: Colors.grey.shade500))
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              child: Icon(
-                Remix.share_line,
-                size: 25.w,
-              ),
-            )
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18.0.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: .32.sh,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(MyImage.images.lambo.path),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Overview',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .5.sp,
+                      ),
+                    ),
+                    ExpandableText(
+                      'The Maruti Suzuki Alto is good city runabout that\'s quite zippy to drive. Like lorem ipsum dolor in the world and the people that have the samwell and the Maruti.',
+                      expandText: 'Read more',
+                      collapseText: 'see less',
+                      linkStyle: GoogleFonts.roboto(color: AppColor.charade),
+                      expanded: false,
+                      style: GoogleFonts.roboto(
+                        fontSize: 15.sp,
+                        color: AppColor.santasGray,
+                      ),
+                    ),
+                    Gap(10.h),
+                    SizedBox(
+                      height: 70.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: Data.characteristic['data']?.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding:
+                                EdgeInsets.only(left: index == 0 ? 0 : 15.w),
+                            child: Characteristic(
+                              title: Data.characteristic['data']?[index]
+                                  ['title'],
+                              icon: Data.characteristic['data']?[index]['icon'],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Gap(12.h),
+                    Text(
+                      'Renter',
+                      style: GoogleFonts.roboto(
+                        fontSize: 21.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const RenterTile(),
+                  ],
                 ),
               ),
+            ],
+          ),
+          bottomNavigationBar: Container(
+            padding: EdgeInsets.only(
+                bottom: 28.h, top: 18.h, left: 20.w, right: 20.w),
+            decoration: BoxDecoration(
+              color: AppColor.alabaster,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  offset: const Offset(0, -1),
+                  blurRadius: 5,
+                  spreadRadius: .4,
+                )
+              ],
             ),
-            Text(
-              'Overview',
-              style: GoogleFonts.roboto(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-                letterSpacing: .5.sp,
-              ),
-            ),
-            Text(
-              'The Maruti Suzuki Alto is good city runabout \nthat\'s quite zippy to drive. Like',
-              style: GoogleFonts.roboto(
-                fontSize: 16.sp,
-                color: AppColor.santasGray,
-              ),
-            ),
-            Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 50.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                    color: const Color(0XFFF7F7F7),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: const Icon(Icons.event_seat_outlined),
+                Row(
+                  children: [
+                    Text(
+                      '\$450',
+                      style: GoogleFonts.roboto(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    Text(
+                      ' /Day',
+                      style: GoogleFonts.roboto(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.normal,
+                        color: AppColor.santasGray,
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
-                  height: 50.h,
-                  width: 55.w,
+                  width: .55.sw,
+                  padding: EdgeInsets.symmetric(vertical: 8.w),
                   decoration: BoxDecoration(
-                    color: const Color(0XFFF7F7F7),
                     borderRadius: BorderRadius.circular(8.r),
+                    color: AppColor.charade,
                   ),
-                  child: const Icon(IonIcons.battery_charging),
-                ),
-                Container(
-                  height: 50.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                    color: const Color(0XFFF7F7F7),
-                    borderRadius: BorderRadius.circular(8.r),
+                  child: MaterialButton(
+                    onPressed: () {
+                      // context.push('/${PageRoutes.home}');
+                    },
+                    child: Text(
+                      'Rent Now',
+                      style: GoogleFonts.roboto(
+                        fontSize: 21.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.white,
+                      ),
+                    ),
                   ),
-                  child: const Icon(Icons.speed_outlined),
-                ),
-                Container(
-                  height: 50.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                    color: const Color(0XFFF7F7F7),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: const Icon(FontAwesomeIcons.mapPin),
-                ),
-                Container(
-                  height: 50.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                    color: const Color(0XFFF7F7F7),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: const Icon(CupertinoIcons.briefcase),
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
