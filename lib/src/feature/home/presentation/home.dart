@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                 itemCount: Data.productsName.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    context.go('/${PageRoutes.detailPage}');
+                    context.push('/${PageRoutes.detailPage}');
                   },
                   child: Container(
                     height: 120.h,

@@ -39,15 +39,18 @@ class _DetailPageState extends State<DetailPage> {
             child: AppBar(
               backgroundColor: AppColor.santasGray.withOpacity(.15),
               leadingWidth: 60.w,
-              leading: Container(
-                margin: EdgeInsets.only(left: 10.w),
-                decoration: BoxDecoration(
-                  color: AppColor.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Icon(
-                  EvaIcons.arrow_ios_back_outline,
-                  size: 25.w,
+              leading: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.w),
+                  decoration: BoxDecoration(
+                    color: AppColor.white,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Icon(
+                    EvaIcons.arrow_ios_back_outline,
+                    size: 25.w,
+                  ),
                 ),
               ),
               actions: [
