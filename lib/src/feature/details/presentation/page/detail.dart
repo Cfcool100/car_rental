@@ -73,7 +73,7 @@ class _DetailPageState extends State<DetailPage> {
               Stack(
                 children: [
                   Container(
-                    height: .42.sh - 45.h,
+                    height: .45.sh - 45.h,
                     decoration: BoxDecoration(
                       color: AppColor.santasGray.withOpacity(.15),
                       borderRadius: BorderRadius.only(
@@ -166,7 +166,7 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                padding: EdgeInsets.fromLTRB(18.0.w, 15.h,18.w, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
