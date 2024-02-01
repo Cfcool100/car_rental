@@ -16,6 +16,8 @@ class OnBoarding extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Gap(0),
+            const Gap(0),
+            const Gap(0),
             Container(
               width: MediaQuery.sizeOf(context).width,
               height: 300.h,
@@ -86,6 +88,7 @@ class OnBoarding extends StatelessWidget {
                 ),
               ),
             ),
+            const Gap(0),
           ],
         ),
       ),
