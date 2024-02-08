@@ -33,12 +33,71 @@ class $AssetsImagesProductsGen {
   AssetGenImage get bmwX1 =>
       const AssetGenImage('assets/images/products/Bmw_x1.png');
 
+  /// File path: assets/images/products/bmw_1.png
+  AssetGenImage get bmw1 =>
+      const AssetGenImage('assets/images/products/bmw_1.png');
+
+  /// File path: assets/images/products/bmw_2.png
+  AssetGenImage get bmw2 =>
+      const AssetGenImage('assets/images/products/bmw_2.png');
+
+  /// File path: assets/images/products/bmw_3.png
+  AssetGenImage get bmw3 =>
+      const AssetGenImage('assets/images/products/bmw_3.png');
+
+  /// File path: assets/images/products/renter_1.jpg
+  AssetGenImage get renter1 =>
+      const AssetGenImage('assets/images/products/renter_1.jpg');
+
+  /// File path: assets/images/products/renter_2.jpg
+  AssetGenImage get renter2 =>
+      const AssetGenImage('assets/images/products/renter_2.jpg');
+
+  /// File path: assets/images/products/renter_3.jpg
+  AssetGenImage get renter3 =>
+      const AssetGenImage('assets/images/products/renter_3.jpg');
+
+  /// File path: assets/images/products/renter_4.jpg
+  AssetGenImage get renter4 =>
+      const AssetGenImage('assets/images/products/renter_4.jpg');
+
   /// File path: assets/images/products/tesla.png
   AssetGenImage get tesla =>
       const AssetGenImage('assets/images/products/tesla.png');
 
+  /// File path: assets/images/products/tesla_1.png
+  AssetGenImage get tesla1 =>
+      const AssetGenImage('assets/images/products/tesla_1.png');
+
+  /// File path: assets/images/products/tesla_2.png
+  AssetGenImage get tesla2 =>
+      const AssetGenImage('assets/images/products/tesla_2.png');
+
+  /// File path: assets/images/products/tesla_3.png
+  AssetGenImage get tesla3 =>
+      const AssetGenImage('assets/images/products/tesla_3.png');
+
+  /// File path: assets/images/products/user.jpg
+  AssetGenImage get user =>
+      const AssetGenImage('assets/images/products/user.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [bmw4Serisi, bmwX1, tesla];
+  List<AssetGenImage> get values => [
+        bmw4Serisi,
+        bmwX1,
+        bmw1,
+        bmw2,
+        bmw3,
+        renter1,
+        renter2,
+        renter3,
+        renter4,
+        tesla,
+        tesla1,
+        tesla2,
+        tesla3,
+        user
+      ];
 }
 
 class $AssetsImagesProfileGen {

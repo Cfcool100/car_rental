@@ -1,4 +1,5 @@
 import 'package:car_rental/src/core/core.dart';
+import 'package:car_rental/src/core/data/dummy_data.dart';
 import 'package:car_rental/src/feature/details/bloc/products_bloc.dart';
 import 'package:car_rental/src/feature/details/presentation/component/characteristic.dart';
 import 'package:car_rental/src/feature/details/presentation/component/renter_list_tile.dart';
@@ -9,7 +10,9 @@ import 'package:remixicon/remixicon.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+  const DetailPage({super.key, required this.productId});
+
+  final int? productId;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -18,10 +21,13 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   int currentIndex = 0;
 
+  late Product currentProduct;
   late PageController controller;
 
   @override
   void initState() {
+    currentProduct = DummyData.products
+        .firstWhere((element) => element.id == widget.productId);
     controller = PageController(
       initialPage: currentIndex,
     );
@@ -90,36 +96,50 @@ class _DetailPageState extends State<DetailPage> {
                           child: PageView(
                             controller: controller,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(bottom: 10.h),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(MyImage
-                                        .images.products.bmw4Serisi.path),
-                                    fit: BoxFit.contain,
+                              // a = [2,3]
+                              // b = [9]
+                              //[...a, ...b]
+                              ...currentProduct.images.map(
+                                (product) => Container(
+                                  margin: EdgeInsets.only(bottom: 10.h),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(product),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 10.h),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(MyImage
-                                        .images.products.bmw4Serisi.path),
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 10.h),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(MyImage
-                                        .images.products.bmw4Serisi.path),
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
+                              )
+                              // Container(
+                              //   margin: EdgeInsets.only(bottom: 10.h),
+                              //   decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage(MyImage
+                              //           .images.products.bmw4Serisi.path),
+                              //       fit: BoxFit.contain,
+                              //     ),
+                              //   ),
+                              // ),
+                              // Container(
+                              //   margin: EdgeInsets.only(bottom: 10.h),
+                              //   decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage(MyImage
+                              //           .images.products.bmw4Serisi.path),
+                              //       fit: BoxFit.contain,
+                              //     ),
+                              //   ),
+                              // ),
+                              // Container(
+                              //   margin: EdgeInsets.only(bottom: 10.h),
+                              //   decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage(MyImage
+                              //           .images.products.bmw4Serisi.path),
+                              //       fit: BoxFit.contain,
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -139,9 +159,10 @@ class _DetailPageState extends State<DetailPage> {
                     // top: 5.h,
                     left: 20.w,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Maruti Alto',
+                          currentProduct.libelle,
                           style: GoogleFonts.poppins(
                             fontSize: 24.sp,
                             fontWeight: FontWeight.w500,
@@ -153,12 +174,12 @@ class _DetailPageState extends State<DetailPage> {
                               Icons.star_rate_rounded,
                               color: Colors.orange.shade300,
                             ),
-                            Text('4.9',
+                            Text(currentProduct.rate.toString(),
                                 style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
                             Gap(10.w),
-                            Text('(110 Reviews)',
+                            Text('(${currentProduct.reviews} Reviews)',
                                 style: GoogleFonts.poppins(
                                     color: Colors.grey.shade500))
                           ],
@@ -169,7 +190,7 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(18.0.w, 15.h,18.w, 0),
+                padding: EdgeInsets.fromLTRB(18.0.w, 15.h, 18.w, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -182,7 +203,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                     ),
                     ExpandableText(
-                      'The Maruti Suzuki Alto is good city runabout that\'s quite zippy to drive. Like lorem ipsum dolor in the world and the people that have the samwell and the Maruti.',
+                      currentProduct.description,
                       expandText: 'Read more',
                       collapseText: 'see less',
                       linkStyle: GoogleFonts.roboto(color: AppColor.charade),
@@ -197,15 +218,14 @@ class _DetailPageState extends State<DetailPage> {
                       height: 70.h,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: Data.characteristic['data']?.length,
+                        itemCount: currentProduct.details.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding:
                                 EdgeInsets.only(left: index == 0 ? 0 : 15.w),
                             child: Characteristic(
-                              title: Data.characteristic['data']?[index]
-                                  ['title'],
-                              icon: Data.characteristic['data']?[index]['icon'],
+                              title: currentProduct.details[index].libelle,
+                              icon: currentProduct.details[index].image,
                             ),
                           );
                         },
@@ -219,70 +239,73 @@ class _DetailPageState extends State<DetailPage> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const RenterTile(),
+                     RenterTile(renter: currentProduct.renter,),
                   ],
                 ),
               ),
             ],
           ),
-          bottomNavigationBar: Container(
-            padding: EdgeInsets.only(
-                bottom: 28.h, top: 18.h, left: 20.w, right: 20.w),
-            decoration: BoxDecoration(
-              color: AppColor.alabaster,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  offset: const Offset(0, -1),
-                  blurRadius: 5,
-                  spreadRadius: .4,
-                )
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '\$450',
-                      style: GoogleFonts.roboto(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w800,
+          bottomNavigationBar: Material(
+            elevation: 30,
+            child: Container(
+              padding: EdgeInsets.only(
+                  bottom: 28.h, top: 18.h, left: 20.w, right: 20.w),
+              decoration: BoxDecoration(
+                color: AppColor.alabaster,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    offset: const Offset(0, -1),
+                    blurRadius: 5,
+                    spreadRadius: .4,
+                  )
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '\$450',
+                        style: GoogleFonts.roboto(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
-                    Text(
-                      ' /Day',
-                      style: GoogleFonts.roboto(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.normal,
-                        color: AppColor.santasGray,
+                      Text(
+                        ' /Day',
+                        style: GoogleFonts.roboto(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColor.santasGray,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: .55.sw,
-                  padding: EdgeInsets.symmetric(vertical: 8.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    color: AppColor.charade,
+                    ],
                   ),
-                  child: MaterialButton(
-                    onPressed: () {
-                      // context.push('/${PageRoutes.home}');
-                    },
-                    child: Text(
-                      'Rent Now',
-                      style: GoogleFonts.roboto(
-                        fontSize: 21.sp,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.white,
+                  Container(
+                    width: .55.sw,
+                    padding: EdgeInsets.symmetric(vertical: 8.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      color: AppColor.charade,
+                    ),
+                    child: MaterialButton(
+                      onPressed: () {
+                        // context.push('/${PageRoutes.home}');
+                      },
+                      child: Text(
+                        'Rent Now',
+                        style: GoogleFonts.roboto(
+                          fontSize: 21.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

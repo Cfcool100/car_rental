@@ -1,4 +1,5 @@
 import 'package:car_rental/src/core/core.dart';
+import 'package:car_rental/src/core/data/dummy_data.dart';
 import 'package:flutter/material.dart';
 
 AppBar appBar() {
@@ -9,7 +10,7 @@ AppBar appBar() {
       quarterTurns: 9,
       child: Container(
         padding: EdgeInsets.all(4.dm),
-        margin: EdgeInsets.only(left: 5.w, top: 0.h, bottom:  15.h),
+        margin: EdgeInsets.only(left: 5.w, top: 0.h, bottom: 15.h),
         decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.circular(10.r),
@@ -25,7 +26,7 @@ AppBar appBar() {
         children: [
           const Icon(Icons.location_on_rounded),
           Text(
-            'Carlifornia, US',
+            DummyData.user.address,
             style: GoogleFonts.robotoFlex(
               fontSize: 16.sp,
               // fontWeight: FontWeight.w500
@@ -46,8 +47,7 @@ AppBar appBar() {
             color: AppColor.white,
             borderRadius: BorderRadius.circular(5.r),
             image: DecorationImage(
-                image: AssetImage(MyImage.images.profile.profile.path),
-                fit: BoxFit.cover),
+                image: AssetImage(DummyData.user.avatar), fit: BoxFit.cover),
           ),
         ),
       )

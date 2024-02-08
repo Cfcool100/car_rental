@@ -1,4 +1,5 @@
 import 'package:car_rental/src/core/core.dart';
+import 'package:car_rental/src/core/data/dummy_data.dart';
 import 'package:car_rental/src/feature/details/bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +54,7 @@ class Home extends StatelessWidget {
                       height: 88.h,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: Data.brandname.length,
+                        itemCount: DummyData.brands.length,
                         itemBuilder: (context, index) => Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,12 +69,10 @@ class Home extends StatelessWidget {
                                   color: AppColor.white,
                                   borderRadius: BorderRadius.circular(10.r)),
                               child: Brand(
-                                Data.brand[index],
+                                DummyData.brands[index].image,
                               ),
                             ),
-                            Text(
-                              Data.brandname[index],
-                            )
+                            Text(DummyData.brands[index].libelle)
                           ],
                         ),
                       ),
@@ -90,10 +89,11 @@ class Home extends StatelessWidget {
                 ),
               ),
               SliverList.builder(
-                itemCount: Data.productsName.length,
+                itemCount: DummyData.products.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    context.push('/${PageRoutes.detailPage}');
+                    context.push('/${PageRoutes.detailPage}',
+                        extra: DummyData.products[index].id);
                   },
                   child: Container(
                     height: 120.h,
@@ -110,7 +110,7 @@ class Home extends StatelessWidget {
                           child: Container(
                             margin: EdgeInsets.only(bottom: 10.h, left: 10.w),
                             child: Image.asset(
-                              Data.productsImg[index],
+                              DummyData.products[index].images.first,
                               fit: BoxFit.contain,
                               width: 90,
                               height: 150,
@@ -131,26 +131,24 @@ class Home extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                Row(
-                            
-                                    children: [
-                                      Text(
-                                        '\$450',
-                                        style: GoogleFonts.roboto(
-                                          // color: ,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      Text(
-                                        '/Day',
-                                        style: GoogleFonts.roboto(
-                                          color: Colors.grey.shade300,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ]),
+                                Row(children: [
+                                  Text(
+                                    '\$${DummyData.products[index].price}',
+                                    style: GoogleFonts.roboto(
+                                      // color: ,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    '/Day',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.grey.shade300,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ]),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -159,7 +157,7 @@ class Home extends StatelessWidget {
                                       color: Colors.orange.shade300,
                                     ),
                                     Text(
-                                      '4.9',
+                                      '${DummyData.products[index].rate}',
                                       style: GoogleFonts.roboto(
                                           color: AppColor.santasGray,
                                           fontSize: 14.sp),
@@ -173,20 +171,23 @@ class Home extends StatelessWidget {
                                         ),
                                         CircleAvatar(
                                           radius: 8.r,
-                                          backgroundImage: AssetImage(MyImage.images.profile.profile.path),
+                                          backgroundImage: AssetImage(MyImage
+                                              .images.profile.profile.path),
                                         ),
                                         Positioned(
                                           left: 12.w,
                                           child: CircleAvatar(
                                             radius: 8.r,
-                                            backgroundImage: AssetImage(MyImage.images.profile.profile.path),
+                                            backgroundImage: AssetImage(MyImage
+                                                .images.profile.profile.path),
                                           ),
                                         ),
                                         Positioned(
                                           left: 24.w,
                                           child: CircleAvatar(
                                             radius: 8.r,
-                                            backgroundImage: AssetImage(MyImage.images.profile.profile.path),
+                                            backgroundImage: AssetImage(MyImage
+                                                .images.profile.profile.path),
                                           ),
                                         ),
                                       ],
@@ -202,7 +203,8 @@ class Home extends StatelessWidget {
                                       width: 85.w,
                                       height: 28.h,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10.r),
+                                        borderRadius:
+                                            BorderRadius.circular(10.r),
                                         color: AppColor.charade,
                                       ),
                                       child: TextButton(
@@ -228,9 +230,10 @@ class Home extends StatelessWidget {
                                       height: 30.h,
                                       width: 35.w,
                                       decoration: BoxDecoration(
-                                        color:
-                                            Colors.grey.shade300.withOpacity(.4),
-                                        borderRadius: BorderRadius.circular(50.r),
+                                        color: Colors.grey.shade300
+                                            .withOpacity(.4),
+                                        borderRadius:
+                                            BorderRadius.circular(50.r),
                                       ),
                                       child: const Icon(
                                         IonIcons.heart,

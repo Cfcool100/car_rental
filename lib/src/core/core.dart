@@ -13,3 +13,4 @@ export 'package:car_rental/src/core/shared_widget/section_title.dart';
 export 'package:icons_plus/icons_plus.dart';
 export 'package:car_rental/src/core/shared_widget/search_bar.dart';
 export 'package:car_rental/src/core/shared_widget/rounded_btn.dart';
+export './models/models.dart';

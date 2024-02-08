@@ -19,7 +19,10 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: PageRoutes.detailPage,
           builder: (BuildContext context, GoRouterState state) {
-            return const DetailPage();
+            final id = state.extra as int?;
+            return DetailPage(
+              productId: id,
+            );
           },
         ),
       ],

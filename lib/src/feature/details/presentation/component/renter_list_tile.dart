@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
 
 class RenterTile extends StatelessWidget {
-  const RenterTile({super.key});
+  const RenterTile({super.key, required this.renter});
+
+  final Renter renter;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +13,10 @@ class RenterTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
         radius: 23.r,
-        backgroundImage: AssetImage(MyImage.images.profile.profile.path),
+        backgroundImage: AssetImage(renter.avatar),
       ),
       title: Text(
-        'Jason Smith',
+        renter.name,
         style: GoogleFonts.roboto(
           fontSize: 18.sp,
           fontWeight: FontWeight.w600,
