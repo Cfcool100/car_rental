@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class PageRoutes {
   static const String onboarding = '/';
   static const String home = 'home';
+  static const String searchPage = 'search';
   static const String detailPage = 'detail-page';
 }
 

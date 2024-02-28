@@ -1,11 +1,15 @@
 import 'package:car_rental/src/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RenterTile extends StatelessWidget {
-  const RenterTile({super.key, required this.renter});
+  const RenterTile({super.key, required this.renter, required this.number});
 
   final Renter renter;
+  final String number;
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,16 @@ class RenterTile extends StatelessWidget {
                 color: Colors.grey.shade300.withOpacity(.4),
                 borderRadius: BorderRadius.circular(5.r),
               ),
-              child: const Icon(Remix.phone_line),
+              child: GestureDetector(
+                onTap: () {
+                  print(number);
+                  launchUrl(Uri(
+                    scheme: 'tel',
+                    path: number,
+                  ));
+                },
+                child: const Icon(Remix.phone_line),
+              ),
             ),
           ],
         ),

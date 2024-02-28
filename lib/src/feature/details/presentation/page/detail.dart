@@ -1,6 +1,6 @@
 import 'package:car_rental/src/core/core.dart';
 import 'package:car_rental/src/core/data/dummy_data.dart';
-import 'package:car_rental/src/feature/details/bloc/products_bloc.dart';
+import 'package:car_rental/src/feature/details/bloc/products_bloc/products_bloc.dart';
 import 'package:car_rental/src/feature/details/presentation/component/characteristic.dart';
 import 'package:car_rental/src/feature/details/presentation/component/renter_list_tile.dart';
 import 'package:expandable_text/expandable_text.dart';
@@ -76,172 +76,180 @@ class _DetailPageState extends State<DetailPage> {
               ],
             ),
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          body: ListView(
             children: [
-              Stack(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: .45.sh - 45.h,
-                    decoration: BoxDecoration(
-                      color: AppColor.santasGray.withOpacity(.15),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30.r),
-                          bottomRight: Radius.circular(30.r)),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          child: PageView(
-                            controller: controller,
-                            children: [
-                              // a = [2,3]
-                              // b = [9]
-                              //[...a, ...b]
-                              ...currentProduct.images.map(
-                                (product) => Container(
-                                  margin: EdgeInsets.only(bottom: 10.h),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(product),
-                                      fit: BoxFit.contain,
+                  Stack(
+                    children: [
+                      Container(
+                        height: .45.sh - 45.h,
+                        decoration: BoxDecoration(
+                          color: AppColor.santasGray.withOpacity(.15),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(30.r),
+                              bottomRight: Radius.circular(30.r)),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: PageView(
+                                controller: controller,
+                                children: [
+                                  // a = [2,3]
+                                  // b = [9]
+                                  //[...a, ...b]
+                                  ...currentProduct.images.map(
+                                    (product) => Container(
+                                      margin: EdgeInsets.only(bottom: 10.h),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(product),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  )
+                                  // Container(
+                                  //   margin: EdgeInsets.only(bottom: 10.h),
+                                  //   decoration: BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(MyImage
+                                  //           .images.products.bmw4Serisi.path),
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // Container(
+                                  //   margin: EdgeInsets.only(bottom: 10.h),
+                                  //   decoration: BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(MyImage
+                                  //           .images.products.bmw4Serisi.path),
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // Container(
+                                  //   margin: EdgeInsets.only(bottom: 10.h),
+                                  //   decoration: BoxDecoration(
+                                  //     image: DecorationImage(
+                                  //       image: AssetImage(MyImage
+                                  //           .images.products.bmw4Serisi.path),
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            SmoothPageIndicator(
+                              controller: controller,
+                              effect: WormEffect(
+                                  dotWidth: 8.r,
+                                  dotHeight: 8.r,
+                                  activeDotColor: AppColor.charade),
+                              count: currentProduct.images.length,
+                            ),
+                            Gap(18.h),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        // top: 5.h,
+                        left: 20.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              currentProduct.libelle,
+                              style: GoogleFonts.poppins(
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star_rate_rounded,
+                                  color: Colors.orange.shade300,
                                 ),
-                              )
-                              // Container(
-                              //   margin: EdgeInsets.only(bottom: 10.h),
-                              //   decoration: BoxDecoration(
-                              //     image: DecorationImage(
-                              //       image: AssetImage(MyImage
-                              //           .images.products.bmw4Serisi.path),
-                              //       fit: BoxFit.contain,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Container(
-                              //   margin: EdgeInsets.only(bottom: 10.h),
-                              //   decoration: BoxDecoration(
-                              //     image: DecorationImage(
-                              //       image: AssetImage(MyImage
-                              //           .images.products.bmw4Serisi.path),
-                              //       fit: BoxFit.contain,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Container(
-                              //   margin: EdgeInsets.only(bottom: 10.h),
-                              //   decoration: BoxDecoration(
-                              //     image: DecorationImage(
-                              //       image: AssetImage(MyImage
-                              //           .images.products.bmw4Serisi.path),
-                              //       fit: BoxFit.contain,
-                              //     ),
-                              //   ),
-                              // ),
-                            ],
-                          ),
+                                Text(currentProduct.rate.toString(),
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600)),
+                                Gap(10.w),
+                                Text('(${currentProduct.reviews} Reviews)',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.grey.shade500))
+                              ],
+                            ),
+                          ],
                         ),
-                        SmoothPageIndicator(
-                          controller: controller,
-                          effect: WormEffect(
-                              dotWidth: 8.r,
-                              dotHeight: 8.r,
-                              activeDotColor: AppColor.charade),
-                          count: 3,
-                        ),
-                        Gap(18.h),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                  Positioned(
-                    // top: 5.h,
-                    left: 20.w,
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(18.0.w, 15.h, 18.w, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          currentProduct.libelle,
-                          style: GoogleFonts.poppins(
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w500,
+                          'Overview',
+                          style: GoogleFonts.roboto(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: .5.sp,
                           ),
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star_rate_rounded,
-                              color: Colors.orange.shade300,
-                            ),
-                            Text(currentProduct.rate.toString(),
-                                style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600)),
-                            Gap(10.w),
-                            Text('(${currentProduct.reviews} Reviews)',
-                                style: GoogleFonts.poppins(
-                                    color: Colors.grey.shade500))
-                          ],
+                        ExpandableText(
+                          currentProduct.description,
+                          expandText: 'Read more',
+                          collapseText: 'see less',
+                          linkStyle:
+                              GoogleFonts.roboto(color: AppColor.charade),
+                          expanded: false,
+                          style: GoogleFonts.roboto(
+                            fontSize: 15.sp,
+                            color: AppColor.santasGray,
+                          ),
+                        ),
+                        Gap(10.h),
+                        SizedBox(
+                          height: 70.h,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: currentProduct.details.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                    left: index == 0 ? 0 : 15.w),
+                                child: Characteristic(
+                                  title: currentProduct.details[index].libelle,
+                                  icon: currentProduct.details[index].image,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Gap(12.h),
+                        Text(
+                          'Renter',
+                          style: GoogleFonts.roboto(
+                            fontSize: 21.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        RenterTile(
+                          renter: currentProduct.renter,
+                          number: currentProduct.renter.contact,
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(18.0.w, 15.h, 18.w, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Overview',
-                      style: GoogleFonts.roboto(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: .5.sp,
-                      ),
-                    ),
-                    ExpandableText(
-                      currentProduct.description,
-                      expandText: 'Read more',
-                      collapseText: 'see less',
-                      linkStyle: GoogleFonts.roboto(color: AppColor.charade),
-                      expanded: false,
-                      style: GoogleFonts.roboto(
-                        fontSize: 15.sp,
-                        color: AppColor.santasGray,
-                      ),
-                    ),
-                    Gap(10.h),
-                    SizedBox(
-                      height: 70.h,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: currentProduct.details.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding:
-                                EdgeInsets.only(left: index == 0 ? 0 : 15.w),
-                            child: Characteristic(
-                              title: currentProduct.details[index].libelle,
-                              icon: currentProduct.details[index].image,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Gap(12.h),
-                    Text(
-                      'Renter',
-                      style: GoogleFonts.roboto(
-                        fontSize: 21.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                     RenterTile(renter: currentProduct.renter,),
-                  ],
-                ),
               ),
             ],
           ),

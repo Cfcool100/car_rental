@@ -10,6 +10,7 @@ class Product extends Equatable {
     required this.brand,
     required this.price,
     required this.rate,
+    this.isLiked = false,
     required this.reviews,
     required this.renter,
     required this.details,
@@ -22,6 +23,7 @@ class Product extends Equatable {
   final Renter renter;
   final double price;
   final double rate;
+  final bool isLiked;
   final int reviews;
   final List<String> images;
   final List<ProductDetail> details;

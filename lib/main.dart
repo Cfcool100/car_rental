@@ -2,7 +2,7 @@ import 'package:car_rental/src/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:car_rental/src/core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'src/feature/details/bloc/products_bloc.dart';
+import 'src/feature/details/bloc/products_bloc/products_bloc.dart';
 
 void main() {
   runApp(const MyApp());
