@@ -42,12 +42,32 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   FutureOr<void> _likeButtonClickedEvent(
       LikeButtonClickedEvent event, Emitter<ProductsState> emit) {
     if (state is ProductsSuccessState) {
+      final products = (state as ProductsSuccessState).products;
 
-      final product = (state as ProductsSuccessState).products.firstWhere((element) => element.id == event.id);
+      emit(ProductsSuccessState([
+        for (var product in products)
+          if (product.id == event.id)
+            product.copyWith(isLiked: !product.isLiked)
+          else
+            product
+      ]));
 
-      // emit(state.)
-      // print(!event.isLiked);
-      // emit();
-    } else {}
+      // FIRST METHOD
+      // final products = (state as ProductsSuccessState).products;
+
+      // var existingProduct =
+      //     products.indexWhere((element) => element.id == event.id);
+
+      // if (existingProduct >= 0) {
+      //   final productFound =
+      //       products.firstWhere((element) => element.id == event.id);
+
+      //   var productNew = productFound.copyWith(isLiked: !productFound.isLiked);
+
+      //   products[existingProduct] = productNew;
+
+      //   emit(ProductsSuccessState(products));
+      // }
+    }
   }
 }

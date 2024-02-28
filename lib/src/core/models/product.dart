@@ -32,6 +32,7 @@ class Product extends Equatable {
   List<Object?> get props => [
         libelle,
         description,
+        isLiked,
         brand,
         price,
         rate,
@@ -40,4 +41,29 @@ class Product extends Equatable {
         details,
         renter
       ];
+
+  Product copyWith({
+    String? description,
+    BrandModel? brand,
+    Renter? renter,
+    double? price,
+    double? rate,
+    bool? isLiked,
+    int? reviews,
+    List<String>? images,
+    List<ProductDetail>? details,
+  }) {
+    return Product(
+        id: id,
+        isLiked: isLiked ?? this.isLiked,
+        libelle: libelle,
+        images: images ?? this.images,
+        description: description ?? this.description,
+        brand: brand ?? this.brand,
+        price: price ?? this.price,
+        rate: rate ?? this.rate,
+        reviews: reviews ?? this.reviews,
+        renter: renter ?? this.renter,
+        details: details ?? this.details);
+  }
 }

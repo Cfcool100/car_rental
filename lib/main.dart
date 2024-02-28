@@ -1,3 +1,4 @@
+import 'package:car_rental/src/feature/details/bloc/brands_bloc/brand_bloc.dart';
 import 'package:car_rental/src/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:car_rental/src/core/core.dart';
@@ -5,11 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'src/feature/details/bloc/products_bloc/products_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final ProductsBloc productsBloc = ProductsBloc()
+    ..add(ProductFetchEvent(true));
 
   // This widget is the root of your application.
   @override
@@ -19,8 +23,15 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return BlocProvider(
-          create: (context) => ProductsBloc(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => productsBloc,
+            ),
+            BlocProvider(
+              create: (context) => BrandsBloc()..add(const BrandsFetchEvent()),
+            ),
+          ],
           child: MaterialApp.router(
             routerConfig: router,
             title: 'Flutter Demo',
