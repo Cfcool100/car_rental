@@ -25,13 +25,69 @@ class $AssetsImagesGen {
 class $AssetsImagesProductsGen {
   const $AssetsImagesProductsGen();
 
+  /// File path: assets/images/products/Audi_q2_nardo_back_profile_right.png
+  AssetGenImage get audiQ2NardoBackProfileRight => const AssetGenImage(
+      'assets/images/products/Audi_q2_nardo_back_profile_right.png');
+
+  /// File path: assets/images/products/Audi_q2_nardo_front.png
+  AssetGenImage get audiQ2NardoFront =>
+      const AssetGenImage('assets/images/products/Audi_q2_nardo_front.png');
+
+  /// File path: assets/images/products/Audi_q2_nardo_profile-right.png
+  AssetGenImage get audiQ2NardoProfileRight => const AssetGenImage(
+      'assets/images/products/Audi_q2_nardo_profile-right.png');
+
+  /// File path: assets/images/products/Audi_q2_nardo_profile_left.png
+  AssetGenImage get audiQ2NardoProfileLeft => const AssetGenImage(
+      'assets/images/products/Audi_q2_nardo_profile_left.png');
+
   /// File path: assets/images/products/Bmw_4_serisi.png
   AssetGenImage get bmw4Serisi =>
       const AssetGenImage('assets/images/products/Bmw_4_serisi.png');
 
+  /// File path: assets/images/products/Bmw_4_serisi_back.png
+  AssetGenImage get bmw4SerisiBack =>
+      const AssetGenImage('assets/images/products/Bmw_4_serisi_back.png');
+
+  /// File path: assets/images/products/Bmw_4_serisi_interior.png
+  AssetGenImage get bmw4SerisiInterior =>
+      const AssetGenImage('assets/images/products/Bmw_4_serisi_interior.png');
+
+  /// File path: assets/images/products/Bmw_4_serisi_profile.png
+  AssetGenImage get bmw4SerisiProfile =>
+      const AssetGenImage('assets/images/products/Bmw_4_serisi_profile.png');
+
+  /// File path: assets/images/products/Bmw_4_serisi_right_side.png
+  AssetGenImage get bmw4SerisiRightSide =>
+      const AssetGenImage('assets/images/products/Bmw_4_serisi_right_side.png');
+
   /// File path: assets/images/products/Bmw_x1.png
   AssetGenImage get bmwX1 =>
       const AssetGenImage('assets/images/products/Bmw_x1.png');
+
+  /// File path: assets/images/products/Tesla_Model_Y_back.png
+  AssetGenImage get teslaModelYBack =>
+      const AssetGenImage('assets/images/products/Tesla_Model_Y_back.png');
+
+  /// File path: assets/images/products/Tesla_Model_Y_front.png
+  AssetGenImage get teslaModelYFront =>
+      const AssetGenImage('assets/images/products/Tesla_Model_Y_front.png');
+
+  /// File path: assets/images/products/Tesla_Model_Y_profile.png
+  AssetGenImage get teslaModelYProfile =>
+      const AssetGenImage('assets/images/products/Tesla_Model_Y_profile.png');
+
+  /// File path: assets/images/products/audi-5-back.png
+  AssetGenImage get audi5Back =>
+      const AssetGenImage('assets/images/products/audi-5-back.png');
+
+  /// File path: assets/images/products/audi-5-front.png
+  AssetGenImage get audi5Front =>
+      const AssetGenImage('assets/images/products/audi-5-front.png');
+
+  /// File path: assets/images/products/audi-5-profile.png
+  AssetGenImage get audi5Profile =>
+      const AssetGenImage('assets/images/products/audi-5-profile.png');
 
   /// File path: assets/images/products/bmw_1.png
   AssetGenImage get bmw1 =>
@@ -44,6 +100,26 @@ class $AssetsImagesProductsGen {
   /// File path: assets/images/products/bmw_3.png
   AssetGenImage get bmw3 =>
       const AssetGenImage('assets/images/products/bmw_3.png');
+
+  /// File path: assets/images/products/mercedes-front.png
+  AssetGenImage get mercedesFront =>
+      const AssetGenImage('assets/images/products/mercedes-front.png');
+
+  /// File path: assets/images/products/mercedes-profile-left.png
+  AssetGenImage get mercedesProfileLeft =>
+      const AssetGenImage('assets/images/products/mercedes-profile-left.png');
+
+  /// File path: assets/images/products/mercedes-profile.png
+  AssetGenImage get mercedesProfile =>
+      const AssetGenImage('assets/images/products/mercedes-profile.png');
+
+  /// File path: assets/images/products/mustang.png
+  AssetGenImage get mustang =>
+      const AssetGenImage('assets/images/products/mustang.png');
+
+  /// File path: assets/images/products/mustang_back.png
+  AssetGenImage get mustangBack =>
+      const AssetGenImage('assets/images/products/mustang_back.png');
 
   /// File path: assets/images/products/renter_1.jpg
   AssetGenImage get renter1 =>
@@ -83,11 +159,30 @@ class $AssetsImagesProductsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        audiQ2NardoBackProfileRight,
+        audiQ2NardoFront,
+        audiQ2NardoProfileRight,
+        audiQ2NardoProfileLeft,
         bmw4Serisi,
+        bmw4SerisiBack,
+        bmw4SerisiInterior,
+        bmw4SerisiProfile,
+        bmw4SerisiRightSide,
         bmwX1,
+        teslaModelYBack,
+        teslaModelYFront,
+        teslaModelYProfile,
+        audi5Back,
+        audi5Front,
+        audi5Profile,
         bmw1,
         bmw2,
         bmw3,
+        mercedesFront,
+        mercedesProfileLeft,
+        mercedesProfile,
+        mustang,
+        mustangBack,
         renter1,
         renter2,
         renter3,
